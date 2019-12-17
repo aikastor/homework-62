@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Fragment} from 'react';
+import MainApp from "./containers/MainApp/MainApp";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom"
+import Products from "./components/Products/Products";
+import Contacts from "./components/Contacts/Contacts";
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Fragment>
+        <Router>
+          <div>
+            <nav style={{ margin: 10 }}>
+              <ul className='header'>
+                <li><NavLink to='/' exact activeClassName='active'>
+                  Home
+                </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/products' activeClassName='active'>
+                    Products
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/contacts' activeClassName='active'>
+                    Contacts
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
+            <Route path='/' exact component={MainApp} />
+            <Route path='/products' component={Products} />
+            <Route path='/Contacts' component={Contacts} />
+          </div>
+        </Router>
+      </Fragment>
+
   );
-}
+};
 
 export default App;
+
+
